@@ -148,3 +148,24 @@ button:focus {
 .preplay-wrap .leaderboard-login ul li {
   margin: 1em;
 }
+
+.question-wrap {
+  height: 100vh;
+  width: 100vw;
+}
+.question-wrap progress {
+  width: 100%;
+  height: 1.5em;
+  background-color: #00aeef;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+}
+.question-wrap progress::-webkit-progress-bar {
+  background-color: #ededed;
+}
+.question-wrap progress::-webkit-progress-value {
+  border-radius: 2px;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
+  background-color: #ec008c;
+}
