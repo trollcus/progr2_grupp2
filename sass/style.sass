@@ -1,0 +1,43 @@
+$pink: #ec008c
+$blue: #00aeef
+$green: #8cc63f
+$yellow: #fff200
+$grey: #a0a0a0
+@import url('https://fonts.googleapis.com/css?family=Bitter:400,700')
+$font: 'Bitter', serif
+
+html, body
+  margin: 0 0
+  width: 100%
+  height: 100%
+  box-sizing: border-box
+  display: flex
+  align-items: center
+  justify-content: center
+  font-family: $font
+
+button
+  padding: 1.7em 4em
+  border: none
+  border-radius: 2em
+  color: white
+  font-weight: 700
+  font-size: 1em
+  svg
+    fill: white
+    height: 1.6em
+    position: relative
+    top: 0.5em
+    margin-right: 0.5em
+  &:focus
+    outline: none
+
+
+
+.login-wrap
+
+  button
+    flex-direction: row
+    background: $blue
+    &:focus
+      background: darken($blue, 20%)
