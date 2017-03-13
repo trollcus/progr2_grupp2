@@ -5,6 +5,7 @@ $yellow: #fff200
 $grey: #a0a0a0
 @import url('https://fonts.googleapis.com/css?family=Bitter:400,700')
 $font: 'Bitter', serif
+$radius: 2em
 
 html, body
   margin: 0 0
@@ -17,9 +18,14 @@ html, body
   font-family: $font
   flex-direction: column
   text-align: center
+  position: relative
 
 h1, h2, h3, h4, h5, h6
   letter-spacing: 0.05em
+
+hr
+  border-color: white
+  background-color: white
 
 button
   padding: 1.7em 4em
@@ -88,3 +94,25 @@ button
     align-items: center
     text-align: center
     margin: 2em auto
+
+// Main page
+
+.preplay-wrap
+  button
+    flex: 2
+    font-size: 2em
+  .leaderboard-login
+    background-color: $pink
+    color: white
+    height: 60%
+    width: 20%
+    border-radius: $radius
+    position: absolute
+    top: 1em
+    left: 1em
+    ul
+      list-style: none
+      padding: 0
+      text-align: left
+      li
+        margin: 1em

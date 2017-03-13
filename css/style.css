@@ -23,10 +23,16 @@ html, body {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.05em;
+}
+
+hr {
+  border-color: white;
+  background-color: white;
 }
 
 button {
@@ -115,4 +121,30 @@ button:focus {
           align-items: center;
   text-align: center;
   margin: 2em auto;
+}
+
+.preplay-wrap button {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  font-size: 2em;
+}
+.preplay-wrap .leaderboard-login {
+  background-color: #ec008c;
+  color: white;
+  height: 60%;
+  width: 20%;
+  border-radius: 2em;
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
+.preplay-wrap .leaderboard-login ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+.preplay-wrap .leaderboard-login ul li {
+  margin: 1em;
 }
