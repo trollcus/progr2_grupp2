@@ -22,6 +22,7 @@ html, body {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
+  text-align: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -80,4 +81,38 @@ button:focus {
 }
 .button-grey:focus {
   background: #6d6d6d;
+}
+
+.login-choice h1 {
+  font-size: 2em;
+  margin-bottom: 1.5em;
+}
+.login-choice div {
+  margin-bottom: 4em;
+}
+.login-choice div button {
+  border-radius: 100%;
+  padding: 4em;
+  margin-right: 1em;
+}
+.login-choice input {
+  margin-top: 1em;
+  width: 12em;
+  padding: 1em;
+  height: 2em;
+  border-radius: 2em;
+  outline: none;
+  border: none;
+  background-color: #ededed;
+  font-size: 1.2em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  margin: 2em auto;
 }

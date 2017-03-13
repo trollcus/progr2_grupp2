@@ -16,6 +16,7 @@ html, body
   justify-content: center
   font-family: $font
   flex-direction: column
+  text-align: center
 
 h1, h2, h3, h4, h5, h6
   letter-spacing: 0.05em
@@ -61,9 +62,29 @@ button
   &:focus
     background: darken($grey, 20%)
 
-.login-wrap
+.login-choice
+  h1
+    font-size: 2em
+    margin-bottom: 1.5em
 
-  // button
-  //   background: $blue
-  //   &:focus
-  //     background: darken($blue, 20%)
+  div
+    margin-bottom: 4em
+    button
+      border-radius: 100%
+      padding: 4em
+      margin-right: 1em
+
+  input
+    margin-top: 1em
+    width: 12em
+    padding: 1em
+    height: 2em
+    border-radius: 2em
+    outline: none
+    border: none
+    background-color: lighten($grey, 30%)
+    font-size: 1.2em
+    display: flex
+    align-items: center
+    text-align: center
+    margin: 2em auto
