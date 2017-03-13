@@ -38,6 +38,41 @@ button:focus {
   outline: none;
 }
 
+.button-blue {
+  background: #00aeef;
+}
+.button-blue:focus {
+  background: #006489;
+}
+
+.button-green {
+  background: #8cc63f;
+}
+.button-green:focus {
+  background: #567b24;
+}
+
+.button-pink {
+  background: #ec008c;
+}
+.button-pink:focus {
+  background: #86004f;
+}
+
+.button-yellow {
+  background: #fff200;
+}
+.button-yellow:focus {
+  background: #999100;
+}
+
+.button-grey {
+  background: #a0a0a0;
+}
+.button-grey:focus {
+  background: #6d6d6d;
+}
+
 .login-wrap button {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
