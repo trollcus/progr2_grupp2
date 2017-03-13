@@ -76,10 +76,10 @@ button:focus {
 }
 
 .button-yellow {
-  background: #fff200;
+  background: #ffde17;
 }
 .button-yellow:focus {
-  background: #999100;
+  background: #b09700;
 }
 
 .button-grey {
@@ -155,7 +155,8 @@ button:focus {
 }
 .question-wrap progress {
   width: 100%;
-  height: 1.5em;
+  height: 2em;
+  border: none;
   background-color: #00aeef;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -166,6 +167,15 @@ button:focus {
 }
 .question-wrap progress::-webkit-progress-value {
   border-radius: 2px;
-  background-size: 35px 20px, 100% 100%, 100% 100%;
   background-color: #ec008c;
+}
+.question-wrap .question-option {
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  padding: 2em 5em;
+}
+.question-wrap .question-option button {
+  padding: 2.5em 10em;
+  margin: 1em;
 }
