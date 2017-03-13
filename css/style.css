@@ -72,15 +72,3 @@ button:focus {
 .button-grey:focus {
   background: #6d6d6d;
 }
-
-.login-wrap button {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  background: #00aeef;
-}
-.login-wrap button:focus {
-  background: #006489;
-}
