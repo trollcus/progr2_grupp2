@@ -17,6 +17,15 @@ html, body {
       -ms-flex-pack: center;
           justify-content: center;
   font-family: "Bitter", serif;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 0.05em;
 }
 
 button {
