@@ -115,6 +115,7 @@ function inputTeam() {
     var info = new createUser(user.displayName, teamValue, points, category);
     datapath.set(info).then(function() {
       console.log("Save succeeded");
+      window.location.href = 'quiz/index.html';
     }).catch(function(error){
       console.log("Error");
     });
