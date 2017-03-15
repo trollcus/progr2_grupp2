@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="css/secondstyle.css">
 </head>
 <body>
-  <!-- <div class="login-wrap">
-    <button class="button-blue">
+  <!-- <div class="login-wrap" id="loginButton">
+    <button class="button-blue" onClick="loginButton()">
       <svg version="1.1" id="Google_x2B_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
       	 y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
       <path d="M1.989,5.589c0,1.494,0.499,2.572,1.482,3.205c0.806,0.52,1.74,0.598,2.226,0.598c0.118,0,0.213-0.006,0.279-0.01
@@ -30,32 +30,32 @@
 
   <!-- Ruta bakom -->
 
-  <section class="login-choice">
+  <section class="login-choice" id="loginChoice">
     <h1>Choose your team</h1>
-    <div>
-      <button class="button-blue"></button>
-      <button class="button-yellow"></button>
-      <button class="button-grey active"></button>
-      <button class="button-pink"></button>
-      <button class="button-green"></button>
+    <div id="teams">
+      <button class="button-blue" id="blueTeam" onClick="blueClick()" value="blue"></button>
+      <button class="button-yellow" id="yellowTeam" onClick="yellowClick()" value="yellow"></button>
+      <button class="button-grey active" id="greyTeam" onClick="greyClick()" value="grey"></button>
+      <button class="button-pink" id="pinkTeam" onClick="pinkClick()" value="pink"></button>
+      <button class="button-green" id="greenTeam" onClick="greenClick()" value="green"></button>
     </div>
     <h2>Choose your nickname (Leave empty if you want your regular name)</h2>
     <input type="text" placeholder="Inloggsnamn">
-    <button class="button-green">Submit</button>
+    <button class="button-green" onClick="inputTeam()">Submit</button>
   </section>
 
-  <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyCVkoO8_rcUI8YMn8uUWQSo5K17Z6rLFeg",
-      authDomain: "quiz-14f77.firebaseapp.com",
-      databaseURL: "https://quiz-14f77.firebaseio.com",
-      storageBucket: "quiz-14f77.appspot.com",
-      messagingSenderId: "438241100131"
-    };
-    firebase.initializeApp(config);
-  </script>
+  <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCVkoO8_rcUI8YMn8uUWQSo5K17Z6rLFeg",
+    authDomain: "quiz-14f77.firebaseapp.com",
+    databaseURL: "https://quiz-14f77.firebaseio.com",
+    storageBucket: "quiz-14f77.appspot.com",
+    messagingSenderId: "438241100131"
+  };
+  firebase.initializeApp(config);
+</script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/adam.js"></script>
 <script type="text/javascript" src="js/marcus.js"></script>
