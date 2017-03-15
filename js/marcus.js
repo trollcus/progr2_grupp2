@@ -14,25 +14,45 @@ function loginButton() {
     firebase.auth().signInWithPopup(provider).then(function(result) {
         console.log("Logged in");
         userInfo();
-        // var user = firebase.auth().currentUser;
-        // if(user){
-        //   var datapath = firebase.database().ref('p2/users/' + user.uid);
-        //   console.log(datapath);
-        // }
+        loginCheck();
+
         // if(datapath.child('team').val() == 'Blue' && datapath == 'Pink' && datapath == 'Yellow' && datapath == 'Grey' && datapath == 'Green'){
         //   console.log("yo");
         // }
         // console.log(datapath.child('team').val());
-        var login = document.getElementById('loginButton');
-        var loginChoice = document.getElementById('loginChoice');
-        login.style.display = "none";
-        loginChoice.style.display = "block";
+        // var login = document.getElementById('loginButton');
+        // var loginChoice = document.getElementById('loginChoice');
+        // login.style.display = "none";
+        // loginChoice.style.display = "block";
 
     }).catch(function(error) {
         console.log("Unsuccessful login");
           console.log(error.message);
     });
 }
+
+function loginCheck(){
+  var teamVal;
+  var login = document.getElementById('loginButton');
+  var loginChoice = document.getElementById('loginChoice');
+  var user = firebase.auth().currentUser;
+  var datapath = firebase.database().ref('p2/users/' + user.uid);
+  datapath.once('value').then(function(snapshot) {
+    var teamVal = snapshot.child('team').val();
+    if(teamVal) {
+      console.log('redirect');
+    } else{
+      login.style.display = "none";
+      loginChoice.style.display = "block";
+    }
+  });
+  // if(user){
+  //   var teamVal = datapath.child('team').val();
+  //   console.log(teamVal);
+
+    // console.log(datapath.child('team').val());
+  }
+
 
 function userInfo() {
     //Get the user will be null/false if not logged in
@@ -54,6 +74,8 @@ function createUser(name, team, category, points) {
   this.category = category;
   this.points = points;
 }
+
+
 
 function inputTeam() {
   var user = firebase.auth().currentUser;
