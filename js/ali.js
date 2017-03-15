@@ -15,6 +15,10 @@ var category;
 function questionDisplay() {
     var button;
     var localCounter;
+    var user = firebase.auth().currentUser;
+    var user = firebase.auth().currentUser;
+    var datapath = firebase.database().ref('p2/users/' + user.uid);
+    var datapath = firebase.database().ref('p2/questions/' + );
     for (var i = 0; i < category.questions.length; i++) {
 
         var questionWindow = document.getElementById("question");
