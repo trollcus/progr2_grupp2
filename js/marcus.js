@@ -109,3 +109,7 @@ function pinkClick(){
   var pinkTeam = document.getElementById('pinkTeam');
   return pinkTeam.value;
 }
+
+function qeustionDisplay(){
+  
+}
