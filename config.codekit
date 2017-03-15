@@ -106,11 +106,11 @@
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
-	"\/login\/index.html": {
+	"\/quiz\/index.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/login\/index.html",
+		"inputAbbreviatedPath": "\/quiz\/index.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
