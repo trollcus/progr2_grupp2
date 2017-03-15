@@ -91,6 +91,9 @@ button:focus {
   background: #6d6d6d;
 }
 
+.login-choice {
+  display: none;
+}
 .login-choice h1 {
   font-size: 2em;
   margin-bottom: 1.5em;

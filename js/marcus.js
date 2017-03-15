@@ -47,7 +47,7 @@ function createUser(name, team) {
 function inputTeam() {
   var user = firebase.auth().currentUser;
   if (user){
-    var datapath = firebase.database().ref('users/' + user.uid);
+    var datapath = firebase.database().ref('users/');
     var blueTeam = document.getElementById('blueTeam');
     var greenTeam = document.getElementById('greenTeam');
     var greyTeam = document.getElementById('greyTeam');
