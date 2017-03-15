@@ -18,6 +18,7 @@ function checkLoggedIn(){
     var datapathUser = firebase.database().ref('p2/users/' + user.uid);
     datapathUser.once('value').then(function(snapshot){
     category = snapshot.child('category').val();
+    console.log(category);
     tester();
   });
   } else {
@@ -27,10 +28,12 @@ function checkLoggedIn(){
 }
 
 function tester() {
+
   var button;
   var localCounter;
   var questionsArr = [];
   var user = firebase.auth().currentUser;
+
   var datapath = firebase.database().ref("p2/questions/" + category + "/");
 
   datapath.once('value').then(function(snapshot){
@@ -45,6 +48,7 @@ function tester() {
       var wrong2 = categoryTag.wrong2;
       console.log(correct);
     }
+
 }
 );
 }
