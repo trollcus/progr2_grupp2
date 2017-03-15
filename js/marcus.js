@@ -149,3 +149,7 @@ function pinkClick(){
 
   return pinkTeam.value;
 }
+
+function qeustionDisplay(){
+  
+}
