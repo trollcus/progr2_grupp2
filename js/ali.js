@@ -1,3 +1,5 @@
+var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
 
 if (document.readyState != 'loading') {
     onDocumentReady();
@@ -35,8 +37,6 @@ function questionDisplay() {
       questionMaker(i);
     }
 }
-
-var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
 function questionMaker(i) {
   setTimeout(function() {
