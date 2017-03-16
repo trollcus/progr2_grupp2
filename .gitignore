@@ -1,3 +1,7 @@
 sass/*
 .sass-cache
 .codekit-cache
+
+
+.sass-cache/
+*.css.map
