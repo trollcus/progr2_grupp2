@@ -2,6 +2,8 @@ sass/*
 .sass-cache
 .codekit-cache
 *.config.codekit
+config.codekit
+
 
 
 .sass-cache/
