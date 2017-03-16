@@ -28,31 +28,124 @@ function checkLoggedIn(){
 });
 }
 
+var questionsArray = [];
+
 function tester() {
 
-  var button;
-  var localCounter;
-  var questionsArr = [];
-  var user = firebase.auth().currentUser;
+  // var button;
+  // var localCounter;
+  // var questionsArr = [];
+  // var user = firebase.auth().currentUser;
+  // var questionPage = document.getElementById('questions');
+  //
+  // var datapath = firebase.database().ref("p2/questions/" + category + "/");
+  //
+  // datapath.once('value').then(function(snapshot){
+  //   var questionTitle = snapshot.child('title').val();
+  //   console.log(snapshot.val().length);
+  //   // Creating Element for title and appending
+  //   var question = document.createElement('div');
+  //   var questionOption = document.createElement('div');
+  //   var categoryH2 = document.createElement('h2');
+  //   var questionH1 = document.createElement('h1');
+  //   var buttonCorrect = document.createElement('button');
+  //   var buttonWrong = document.createElement('button');
+  //   var buttonWrong1 = document.createElement('button');
+  //   var buttonWrong2 = document.createElement('button');
+  //   question.setAttribute('class', 'question-window');
+  //   questionOption.setAttribute('class', 'question-option');
+  //   buttonCorrect.setAttribute('class', 'button-green');
+  //   buttonWrong.setAttribute('class', 'button-blue');
+  //   buttonWrong1.setAttribute('class', 'button-pink');
+  //   buttonWrong2.setAttribute('class', 'button-yellow');
+  //   categoryH2.innerHTML = questionTitle;
+  //   questionPage.appendChild(question);
+  //   question.appendChild(categoryH2);
+  //   question.appendChild(questionH1);
+  //   questionPage.appendChild(questionOption);
 
-  var datapath = firebase.database().ref("p2/questions/" + category + "/");
+    for(i = 0; i < 2; i++){
 
-  datapath.once('value').then(function(snapshot){
-    var questionTitle = snapshot.child('title').val();
-    console.log(questionTitle);
-    for(i = 0; i < 5; i++){
-      var categoryTag = snapshot.child(i).val();
-      console.log(categoryTag);
-      var correct = categoryTag.correct;
-      var wrong0 = categoryTag.wrong0;
-      var wrong1 = categoryTag.wrong1;
-      var wrong2 = categoryTag.wrong2;
-      console.log(correct);
+      questionMaker(i);
+
+
+
     }
 
 }
-);
+
+
+
+function questionMaker(i) {
+  setTimeout(function() {
+    var button;
+    var localCounter;
+    var questionsArr = [];
+    var user = firebase.auth().currentUser;
+    var questionPage = document.getElementById('questions');
+
+    var datapath = firebase.database().ref("p2/questions/" + category + "/");
+
+    datapath.once('value').then(function(snapshot){
+      var categoryTitle = snapshot.child('title').val();
+      console.log(snapshot.val().length);
+      // Creating Element for title and appending
+      var question = document.createElement('div');
+      var questionOption = document.createElement('div');
+      var categoryH2 = document.createElement('h2');
+      var questionH1 = document.createElement('h1');
+      var buttonCorrect = document.createElement('button');
+      var buttonWrong = document.createElement('button');
+      var buttonWrong1 = document.createElement('button');
+      var buttonWrong2 = document.createElement('button');
+      question.setAttribute('class', 'question-window');
+      questionOption.setAttribute('class', 'question-option');
+      buttonCorrect.setAttribute('class', 'button-green');
+      buttonWrong.setAttribute('class', 'button-blue');
+      buttonWrong1.setAttribute('class', 'button-pink');
+      buttonWrong2.setAttribute('class', 'button-yellow');
+      categoryH2.innerHTML = categoryTitle;
+      questionPage.appendChild(question);
+      question.appendChild(categoryH2);
+      question.appendChild(questionH1);
+      questionPage.appendChild(questionOption);
+
+
+
+        var categoryTag = snapshot.child(i).val();
+
+        var eachQuestion = categoryTag.question;
+        var correct = categoryTag.correct;
+        var wrong0 = categoryTag.wrong0;
+        var wrong1 = categoryTag.wrong1;
+        var wrong2 = categoryTag.wrong2;
+
+        // Change the value of progress bar
+        var progressBar = document.getElementById('progressBar');
+        progressBar.value = i;
+
+        questionH1.innerHTML = eachQuestion;
+        buttonCorrect.innerHTML = correct;
+        buttonWrong.innerHTML = wrong0;
+        buttonWrong1.innerHTML = wrong1;
+        buttonWrong2.innerHTML = wrong2;
+
+
+
+        questionOption.appendChild(buttonCorrect);
+        questionOption.appendChild(buttonWrong);
+        questionOption.appendChild(buttonWrong1);
+        questionOption.appendChild(buttonWrong2);
+        setTimeout(function(){
+          buttonCorrect.style.opacity = "0";
+        }, 7000);
+
+  });
+}, 8000 * i);
 }
+
+
+
 
 // function questionDisplay() {
 //     var category;
