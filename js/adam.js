@@ -7,3 +7,7 @@ if (document.readyState != 'loading') {
 function onDocumentReady() {
   // Document ready
 }
+
+function backToGame(){
+  window.location.href = 'index.html';
+}

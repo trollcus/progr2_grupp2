@@ -59,7 +59,6 @@ function checkLoggedIn() {
             var datapathUser = firebase.database().ref('p2/users/' + user.uid);
             datapathUser.once('value').then(function(snapshot) {
                 category = snapshot.child('category').val();
-                console.log(category);
                 startQuiz();
             });
         } else {
@@ -83,21 +82,41 @@ function questionDisplay() {
 
 }
 
+
 function timeoutQuestion(i){
   setTimeout(function() {
     // Push score to database
     var user = firebase.auth().currentUser;
+    var info = localCorrecter;
+    var categoryNum;
     if(user){
-      datapath.set(info).then(function() {
-        
+      var datapath = firebase.database().ref("p2/users/" + user.uid);
+      datapath.once('value').then(function(snapshot){
+        categoryNum = snapshot.child('category').val();
+        categoryNum++;
+
+        datapath.update({
+          points: localCorrecter,
+          category: categoryNum
+        }).then(function(){
+          console.log('saved points');
+        });
+
       });
+
+
     }
-    var datapath = firebase.database().ref("p2/users/" + user.uid);
+
+
+
 
 
     // --
-    window.location.href = 'leaderboard.html';
+    // window.location.href = 'leaderboard.html';
   }, (8000 * i) + 8000);
+  setTimeout(function() {
+    window.location.href = 'leaderboard.html';
+  }, (8000 * i) + 8500);
 }
 
 function questionMaker(i) {
@@ -116,10 +135,10 @@ function questionMaker(i) {
             var questionOption = document.createElement('div');
             var categoryH2 = document.createElement('h2');
             var questionH1 = document.createElement('h1');
-            var buttonCorrect = document.createElement('input');
-            var buttonWrong = document.createElement('input');
-            var buttonWrong1 = document.createElement('input');
-            var buttonWrong2 = document.createElement('input');
+            var buttonCorrect = document.createElement('button');
+            var buttonWrong = document.createElement('button');
+            var buttonWrong1 = document.createElement('button');
+            var buttonWrong2 = document.createElement('button');
 
             section.setAttribute('id', 'questions');
             section.setAttribute('class', 'question-wrap');
@@ -151,11 +170,11 @@ function questionMaker(i) {
 
             // Random putting out color of question
             questionH1.innerHTML = eachQuestion;
-            buttonCorrect.value = correct;
+            buttonCorrect.innerHTML = correct;
             buttonCorrect.setAttribute('onClick', 'correctAnswer()');
-            buttonWrong.value = wrong0;
-            buttonWrong1.value = wrong1;
-            buttonWrong2.value = wrong2;
+            buttonWrong.innerHTML = wrong0;
+            buttonWrong1.innerHTML = wrong1;
+            buttonWrong2.innerHTML = wrong2;
 
             var randomNumber = Math.floor(Math.random() * 4);
             switch(randomNumber){
@@ -204,10 +223,6 @@ function questionMaker(i) {
                 questionOption.appendChild(buttonWrong1);
                 break;
             }
-            // buttonCorrect.setAttribute('class', 'button-green');
-            // buttonWrong.setAttribute('class', 'button-blue');
-            // buttonWrong1.setAttribute('class', 'button-pink');
-            // buttonWrong2.setAttribute('class', 'button-yellow');
             var localCorrecter = 0;
 
 
@@ -215,11 +230,6 @@ function questionMaker(i) {
               clearTimeout();
             }
 
-
-            // questionOption.appendChild(buttonCorrect);
-            // questionOption.appendChild(buttonWrong);
-            // questionOption.appendChild(buttonWrong1);
-            // questionOption.appendChild(buttonWrong2);
 
             // Change the value of progress bar
             var progressBar = document.getElementById('progressBar');
