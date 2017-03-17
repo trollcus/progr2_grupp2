@@ -261,3 +261,5 @@ function correctAnswer(){
   localCorrecter++;
   console.log(localCorrecter);
 }
+
+
