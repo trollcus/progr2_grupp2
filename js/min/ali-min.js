@@ -1,6 +1,7 @@
 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 var localCorrecter = 0;
 
+
 if (document.readyState != 'loading') {
     onDocumentReady();
 } else {
@@ -22,8 +23,8 @@ function startQuiz(){
   var button = document.createElement('button');
   var h2 = document.createElement('h2');
   var ulList = document.createElement('ul');
-  var li = document.createElement('li');
-  var line = document.createElement('hr');
+
+
   var span = document.createElement('span');
 
   //---- Klasser
@@ -33,6 +34,7 @@ function startQuiz(){
   divLeaderLogin.setAttribute('class', 'leaderboard-login');
   button.setAttribute('class', 'button-green');
   button.setAttribute('onClick', 'questionDisplay()');
+  button.setAttribute('id', 'leaderButton');
   span.setAttribute('id', 'point');
 
 
@@ -46,12 +48,40 @@ function startQuiz(){
 
   divLeaderLogin.appendChild(h2);
   divLeaderLogin.appendChild(ulList);
-  ulList.appendChild(li);
-  ulList.appendChild(line);
 
 
 
+  // leaderboard
+
+var array = [];
+  var query = firebase.database().ref("p2/");
+  query.child('users').orderByChild('points').on('value', function (snapshot) {
+    snapshot.forEach(function(child){
+
+      array.push(child.val());
+    });
+    // Call for function to create list when the request for object is done
+    leader();
+  });
+
+  function leader(){
+    var arrReverse = array.reverse();
+    // console.log(arrReverse);
+    for(i = 0; i < arrReverse.length; i++){
+      var li = document.createElement('li');
+      var line = document.createElement('hr');
+
+
+      li.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
+      ulList.appendChild(li);
+      ulList.appendChild(line);
+    }
+  }
 }
+
+
+
+
 
 function checkLoggedIn() {
     firebase.auth().onAuthStateChanged(function(user) {
@@ -93,26 +123,20 @@ function timeoutQuestion(i){
       var datapath = firebase.database().ref("p2/users/" + user.uid);
       datapath.once('value').then(function(snapshot){
         categoryNum = snapshot.child('category').val();
+        pointsTemp = snapshot.child('points').val();
         categoryNum++;
+        var pointsNum = pointsTemp + info;
 
         datapath.update({
-          points: localCorrecter,
+          points: pointsNum,
           category: categoryNum
         }).then(function(){
           console.log('saved points');
         });
-
       });
-
-
     }
 
 
-
-
-
-    // --
-    // window.location.href = 'leaderboard.html';
   }, (8000 * i) + 8000);
   setTimeout(function() {
     window.location.href = 'leaderboard.html';
@@ -128,11 +152,13 @@ function questionMaker(i) {
 
         datapath.once('value').then(function(snapshot) {
             var categoryTitle = snapshot.child('title').val();
-            // console.log(snapshot.val().length);
+
             // Creating Element for title and appending
+
             var section = document.createElement('section');
             var question = document.createElement('div');
             var questionOption = document.createElement('div');
+            var correctOrWrong = document.createElement('div');
             var categoryH2 = document.createElement('h2');
             var questionH1 = document.createElement('h1');
             var buttonCorrect = document.createElement('button');
@@ -144,6 +170,7 @@ function questionMaker(i) {
             section.setAttribute('class', 'question-wrap');
             question.setAttribute('class', 'question-window');
             questionOption.setAttribute('class', 'question-option');
+            correctOrWrong.setAttribute('id', 'question-option-window'  + '-' + i);
 
             document.getElementById('placeQuestions').appendChild(section);
             categoryH2.innerHTML = categoryTitle;
@@ -169,12 +196,20 @@ function questionMaker(i) {
             var wrong2 = categoryTag.wrong2;
 
             // Random putting out color of question
+
             questionH1.innerHTML = eachQuestion;
             buttonCorrect.innerHTML = correct;
             buttonCorrect.setAttribute('onClick', 'correctAnswer()');
+            buttonCorrect.setAttribute('name', 'buttonOption');
             buttonWrong.innerHTML = wrong0;
+            buttonWrong.setAttribute('onClick', 'wrongAnswer()');
+            buttonWrong.setAttribute('name', 'buttonOption');
             buttonWrong1.innerHTML = wrong1;
+            buttonWrong1.setAttribute('onClick', 'wrongAnswer()');
+            buttonWrong1.setAttribute('name', 'buttonOption');
             buttonWrong2.innerHTML = wrong2;
+            buttonWrong2.setAttribute('onClick', 'wrongAnswer()');
+            buttonWrong2.setAttribute('name', 'buttonOption');
 
             var randomNumber = Math.floor(Math.random() * 4);
             switch(randomNumber){
@@ -183,22 +218,12 @@ function questionMaker(i) {
                 buttonWrong.setAttribute('class', 'button-blue');
                 buttonWrong1.setAttribute('class', 'button-pink');
                 buttonWrong2.setAttribute('class', 'button-yellow');
-
-                questionOption.appendChild(buttonCorrect);
-                questionOption.appendChild(buttonWrong);
-                questionOption.appendChild(buttonWrong1);
-                questionOption.appendChild(buttonWrong2);
                 break;
               case 1:
                 buttonCorrect.setAttribute('class', 'button-yellow');
                 buttonWrong.setAttribute('class', 'button-green');
                 buttonWrong1.setAttribute('class', 'button-blue');
                 buttonWrong2.setAttribute('class', 'button-pink');
-
-                questionOption.appendChild(buttonWrong);
-                questionOption.appendChild(buttonWrong1);
-                questionOption.appendChild(buttonWrong2);
-                questionOption.appendChild(buttonCorrect);
                 break;
               case 2:
                 buttonCorrect.setAttribute('class', 'button-pink');
@@ -206,23 +231,46 @@ function questionMaker(i) {
                 buttonWrong1.setAttribute('class', 'button-green');
                 buttonWrong2.setAttribute('class', 'button-blue');
 
-                questionOption.appendChild(buttonWrong1);
-                questionOption.appendChild(buttonWrong2);
-                questionOption.appendChild(buttonCorrect);
-                questionOption.appendChild(buttonWrong);
                 break;
               case 3:
                 buttonCorrect.setAttribute('class', 'button-blue');
                 buttonWrong.setAttribute('class', 'button-pink');
                 buttonWrong1.setAttribute('class', 'button-yellow');
                 buttonWrong2.setAttribute('class', 'button-green');
+                break;
+            }
 
+            var appendNumber = Math.floor(Math.random() * 4);
+
+            switch(appendNumber){
+              case 0:
+                questionOption.appendChild(buttonCorrect);
+                questionOption.appendChild(buttonWrong);
+                questionOption.appendChild(buttonWrong1);
+                questionOption.appendChild(buttonWrong2);
+                break;
+              case 1:
+                questionOption.appendChild(buttonWrong);
+                questionOption.appendChild(buttonWrong1);
+                questionOption.appendChild(buttonWrong2);
+                questionOption.appendChild(buttonCorrect);
+                break;
+              case 2:
+                questionOption.appendChild(buttonWrong1);
+                questionOption.appendChild(buttonWrong2);
+                questionOption.appendChild(buttonCorrect);
+                questionOption.appendChild(buttonWrong);
+                break;
+              case 3:
                 questionOption.appendChild(buttonWrong2);
                 questionOption.appendChild(buttonCorrect);
                 questionOption.appendChild(buttonWrong);
                 questionOption.appendChild(buttonWrong1);
                 break;
             }
+
+            section.appendChild(correctOrWrong);
+
             var localCorrecter = 0;
 
 
@@ -268,8 +316,55 @@ function questionMaker(i) {
 
 
 function correctAnswer(){
+  // Adding points to the localPoints, which later dumps it value into the global variable
   localCorrecter++;
-  console.log(localCorrecter);
+
+  var buttonDisabler = document.getElementsByName("buttonOption");
+  var questionDark = document.getElementsByClassName('question-option');
+  var check = document.createElement('img');
+  check.setAttribute('src', 'thumbs-up.png');
+
+  // Get how many buttons there is to be able to display and set correct in the same function
+
+  for(i = 0; i < buttonDisabler.length; i++){
+    // Print our a check if the answer is true
+    var questionWind = document.getElementById('question-option-window'  + '-' + i);
+    if (questionWind){
+      questionWind.appendChild(check);
+    }
+
+    // If button is ignored its going to skip that button.
+    if (buttonDisabler.disabled){
+      // buttonDisabler[i].preventDefault();
+      console.log('ignored');
+    }else {
+      buttonDisabler[i].disabled = true;
+    }
+  }
+}
+
+
+
+function wrongAnswer(){
+  var buttonDisabler = document.getElementsByName("buttonOption");
+  var questionDark = document.getElementsByClassName('question-option');
+  var check = document.createElement('img');
+  check.setAttribute('src', 'thumbs-down.png');
+
+  for(i = 0; i < buttonDisabler.length; i++){
+    var questionWind = document.getElementById('question-option-window'  + '-' + i);
+    if (questionWind){
+      questionWind.appendChild(check);
+    }
+
+    if (buttonDisabler.disabled){
+        console.log('ignored');
+    } else {
+        buttonDisabler[i].disabled = true;
+    }
+
+  }
+// See CorrectAnswer() for comments
 }
 
 

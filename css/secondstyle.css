@@ -1,0 +1,43 @@
+.Score-page{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.leaderboard{
+  position: relative;
+  top: 10%;
+  left: 20%;
+  width: 320px;
+  height: 225px;
+  border-radius: 10%;
+  color: white;
+  font-size: 2rem;
+  padding-top: 0.5rem;
+  background-color: #EC008C;
+  border: solid 0.2rem white;
+}
+
+.teamscore{
+  position: relative;
+  left:20%;
+  width: 320px;
+  height: 225px;
+  border-radius: 10%;
+  color: #5DCCF5;
+  font-size: 2rem;
+  padding-top: 1rem;
+  background-color: white;
+  border: solid 0.2rem #5DCCF5;
+}
+.button-backToGame{
+  position: relative;
+  left: 20%;
+  top: 2rem;
+  background-color: #5DCCF5;
+  border: solid 0.2rem white;
+}
+.Score-page img {
+  position: absolute;
+  left:80%;
+  margin-top:3rem;
+}
