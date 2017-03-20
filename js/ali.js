@@ -133,7 +133,7 @@ function timeoutQuestion(i){
           case 'Blue':
             teamNum = 1;
             break;
-          case 'Red':
+          case 'Pink':
             teamNum = 2;
             break;
           case 'Yellow':
