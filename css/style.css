@@ -167,7 +167,7 @@ button {
     #placeQuestions .preplay-wrap .leaderboard-login {
       background-color: #ec008c;
       color: white;
-      height: 60%;
+      height: auto;
       width: 20%;
       border-radius: 2em;
       position: absolute;
@@ -177,6 +177,8 @@ button {
         list-style: none;
         padding: 0;
         text-align: left; }
+        #placeQuestions .preplay-wrap .leaderboard-login ul hr:last-of-type {
+          display: none; }
         #placeQuestions .preplay-wrap .leaderboard-login ul li {
           margin: 1em; }
   #placeQuestions .question-wrap {

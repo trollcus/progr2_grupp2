@@ -70,6 +70,7 @@ var array = [];
       var li = document.createElement('li');
       var line = document.createElement('hr');
 
+
       li.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
       ulList.appendChild(li);
       ulList.appendChild(line);
