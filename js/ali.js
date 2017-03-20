@@ -80,7 +80,7 @@ var array = [];
 
 
 
-
+// Check to see if a user is logged in, otherwise redirect to index page to login
 
 function checkLoggedIn() {
     firebase.auth().onAuthStateChanged(function(user) {
@@ -96,6 +96,8 @@ function checkLoggedIn() {
         }
     });
 }
+
+// Display question with the for loop, The array has been pushed from snapshot and then rpinted out
 
 var questionsArray = [];
 
@@ -121,10 +123,13 @@ function timeoutQuestion(i){
     if(user){
       var datapath = firebase.database().ref("p2/users/" + user.uid);
 
+      // Take the datapath value
+
       datapath.once('value').then(function(snapshot){
         categoryNum = snapshot.child('category').val();
         pointsTemp = snapshot.child('points').val();
         team = snapshot.child('team').val();
+        // See the team value, Recognizes what team you are in and assign an value depending on which team. That value later gets pushed into next datapath
         var teamNum;
         switch(team){
           case 'Green':
@@ -152,9 +157,9 @@ function timeoutQuestion(i){
         // Updating the team value
         dataPathTeam.once('value').then(function(teamSnapshot){
           teamTemp = teamSnapshot.child('amountCorrect').val();
-          // console.log(teamTemp);
           var teamNum = teamTemp + info;
-          // console.log(teamTemp);
+
+          // Updating the value with the local variable plus old score
           dataPathTeam.update({
             amountCorrect: teamNum
           }).then(function(){
@@ -175,6 +180,7 @@ function timeoutQuestion(i){
 
   }, (8000 * i) + 8000);
   setTimeout(function() {
+    // When the function to push new values the function redirects to leaderboard
     window.location.href = 'leaderboard.html';
   }, (8000 * i) + 8500);
 }
@@ -246,6 +252,8 @@ function questionMaker(i) {
             buttonWrong2.innerHTML = wrong2;
             buttonWrong2.setAttribute('onClick', 'wrongAnswer()');
             buttonWrong2.setAttribute('name', 'buttonOption');
+
+            // Random position on text and buttons
 
             var randomNumber = Math.floor(Math.random() * 4);
             switch(randomNumber){
