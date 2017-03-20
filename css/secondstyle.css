@@ -1,0 +1,148 @@
+h2{
+  color: white;
+}
+h3 {
+  margin-bottom:0em;
+  color: #00aeef;
+}
+h5 {
+  margin-top: 0em;
+  color: #00aeef;
+}
+
+#next {
+  background: #7fdcff;
+}
+.choose {
+  color:white;
+  font-size: 20px;
+  -webkit-text-stroke-width: 2px;
+-webkit-text-stroke-color: #00aeef;
+}
+
+button {
+  border-style: solid;
+  border-color: white
+}
+
+#blueTeam {
+  border-style: solid;
+  border-color: white;
+  font-family: "Bitter", serif;
+  font-size: 15px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.2em;
+  height: 9em;
+  width: 9em;
+}
+
+#yellowTeam {
+  border-style: solid;
+  border-color: white;
+  font-family: "Bitter", serif;
+  font-size: 15px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.2em;
+  height: 9em;
+  width: 9em;
+}
+
+#pinkTeam {
+  border-style: solid;
+  border-color: white;
+  font-family: "Bitter", serif;
+  font-size: 15px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.2em;
+  height: 9em;
+  width: 9em;
+}
+
+#greenTeam {
+  border-style: solid;
+  border-color: white;
+  font-family: "Bitter", serif;
+  font-size: 15px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.2em;
+  height: 9em;
+  width: 9em;
+}
+
+#greyTeam {
+  border-style: solid;
+  border-color: white;
+  font-family: "Bitter", serif;
+  font-size: 15px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.2em;
+  height: 9em;
+  width: 9em;
+}
+
+.button-backToGame {
+  background: #7fdcff;
+}
+
+img {
+  width: 8em;
+  top:1em;
+  right: 3%;
+  position:absolute;
+}
+
+.leaderboard {
+  background-color: #ec008c;
+  width: 25em;
+  height: 17em;
+  right: 57%;
+  position:absolute;
+  border-radius: 2em;
+  top: 8%;
+  padding-top: 1em;
+  border-style: solid;
+  border-color: white;
+  color: white;
+}
+
+.teamscore {
+  background-color: white;
+  width: 25em;
+  height: 17em;
+  right: 57%;
+  position: absolute;
+  border-radius: 2em;
+  top: 52%;
+  padding-top: 1em;
+  border-style: solid;
+  border-color: #7fdcff;
+  color: #00aeef;
+}
+
+.button-backToGame {
+  top: 45%;
+  left: 60%;
+  position: absolute;
+}
+
+.button-backToGame:hover {
+  background: #00aeef;
+}
+
+button.button-green {
+  top: 10em;
+}
+
+.leaderboard-login {
+  right: 10em;
+}

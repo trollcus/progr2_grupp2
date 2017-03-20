@@ -37,7 +37,7 @@ function startQuiz(){
 
 
   h2.innerHTML = 'Leaderboard';
-  button.innerHTML = 'Lets play!';
+  button.innerHTML = "Let's play!";
 
   // ----
   parent.appendChild(section);
