@@ -107,7 +107,6 @@ button {
     margin-bottom: 4em; }
     .login-choice div button {
       border-radius: 100%;
-      padding: 4em;
       margin-right: 1em; }
   .login-choice input {
     margin-top: 1em;
@@ -240,3 +239,20 @@ button {
     #leaderUl ul li {
       font-size: 0.5em;
       padding: 0 0.5em; }
+
+@media(max-width: 740px) {
+  .team {
+    width: 10em;
+    height: 10em;
+    padding: 0;
+    font-size: 1em;
+    margin-bottom: 1em !important; }
+
+  .choose {
+    margin-top: 3em; }
+
+  .login-choice div {
+    margin-bottom: 0; }
+
+  #next {
+    margin-bottom: 1em; } }
