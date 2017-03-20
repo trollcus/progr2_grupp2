@@ -57,7 +57,6 @@ var array = [];
   var query = firebase.database().ref("p2/");
   query.child('users').orderByChild('points').on('value', function (snapshot) {
     snapshot.forEach(function(child){
-
       array.push(child.val());
     });
     // Call for function to create list when the request for object is done
@@ -121,11 +120,48 @@ function timeoutQuestion(i){
     var categoryNum;
     if(user){
       var datapath = firebase.database().ref("p2/users/" + user.uid);
+
       datapath.once('value').then(function(snapshot){
         categoryNum = snapshot.child('category').val();
         pointsTemp = snapshot.child('points').val();
+        team = snapshot.child('team').val();
+        var teamNum;
+        switch(team){
+          case 'Green':
+            teamNum = 0;
+            break;
+          case 'Blue':
+            teamNum = 1;
+            break;
+          case 'Red':
+            teamNum = 2;
+            break;
+          case 'Yellow':
+            teamNum = 3;
+            break;
+          case 'Grey':
+            teamNum = 4;
+            break;
+        }
+        console.log(team);
         categoryNum++;
         var pointsNum = pointsTemp + info;
+        var teamTemp = 0;
+        var dataPathTeam = firebase.database().ref("p2/points/teams/" + teamNum);
+
+        // Updating the team value
+        dataPathTeam.once('value').then(function(teamSnapshot){
+          teamTemp = teamSnapshot.child('amountCorrect').val();
+          // console.log(teamTemp);
+          var teamNum = teamTemp + info
+          // console.log(teamTemp);
+          dataPathTeam.update({
+            amountCorrect: teamNum
+          }).then(function(){
+            console.log('Saved' + localCorrecter +  'to the'  + team + ' team');
+          });
+        });
+
 
         datapath.update({
           points: pointsNum,
