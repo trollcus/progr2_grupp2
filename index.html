@@ -25,23 +25,24 @@
       	C3.963,5.062,3.98,4.38,4.214,3.726c0.229-0.645,0.643-1.078,1.163-1.225c0.125-0.035,0.254-0.053,0.385-0.053
       	C6.962,2.448,7.734,2.946,8.212,4.626z M16,8V5h-2v3h-3v2h3v3h2v-3h3V8H16z"/>
       </svg>
-      Log in with Google</button>
+      log in with Google</button>
   </div>
 
   <!-- Ruta bakom -->
 
   <section class="login-choice" id="loginChoice">
-    <h1>Choose your team</h1>
+    <h1 class="choose">CHOOSE YOUR TEAM</h1>
     <div id="teams">
-      <button class="button-blue" id="blueTeam" onClick="blueClick()" value="Blue"></button>
-      <button class="button-yellow" id="yellowTeam" onClick="yellowClick()" value="Yellow"></button>
-      <button class="button-grey active" id="greyTeam" onClick="greyClick()" value="Grey"></button>
-      <button class="button-pink" id="pinkTeam" onClick="pinkClick()" value="Pink"></button>
-      <button class="button-green" id="greenTeam" onClick="greenClick()" value="Green"></button>
+      <button class="button-blue team" id="blueTeam" onClick="blueClick()" value="Blue">kultur & <br> samhälle</button>
+      <button class="button-yellow team" id="yellowTeam" onClick="yellowClick()" value="Yellow">lärande & <br> samhälle</button>
+      <button class="button-pink team" id="pinkTeam" onClick="pinkClick()" value="Pink">hälsa & <br> samhälle</button>
+      <button class="button-green team" id="greenTeam" onClick="greenClick()" value="Green"> teknik & <br> samhälle</button>
+      <button class="button-grey active team" id="greyTeam" onClick="greyClick()" value="Grey">other</button>
     </div>
-    <h2>Choose your nickname (Leave empty if you want your regular name)</h2>
-    <input type="text" placeholder="Inloggsnamn">
-    <button class="button-green" onClick="inputTeam()">Submit</button>
+    <!-- <h3>Choose your nickname </h3>
+    <h5>(Leave empty if you want your regular name)<h5>
+    <input type="text" placeholder="Inloggsnamn"> -->
+    <button class="button-green" id="next" onClick="inputTeam()">NEXT</button>
   </section>
 
   <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
@@ -57,6 +58,7 @@
   firebase.initializeApp(config);
 </script>
 <script type="text/javascript" src="js/global.js"></script>
+
 <script type="text/javascript" src="js/marcus.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 </body>

@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Bitter:400,700");
+.team {
+  width: 14em;
+  height: 14em;
+  padding: 1em;
+  font-family: "Bitter", serif; }
+
 html, body {
   margin: 0 0;
   width: 100%;

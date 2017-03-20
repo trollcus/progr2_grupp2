@@ -41,3 +41,15 @@
   left:80%;
   margin-top:3rem;
 }
+
+.choose {
+  color:white;
+  font-size: 20px;
+  -webkit-text-stroke-width: 2px;
+-webkit-text-stroke-color: #00aeef;
+}
+
+button {
+  border-style: solid;
+  border-color: white
+}
