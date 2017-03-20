@@ -153,7 +153,7 @@ function timeoutQuestion(i){
         dataPathTeam.once('value').then(function(teamSnapshot){
           teamTemp = teamSnapshot.child('amountCorrect').val();
           // console.log(teamTemp);
-          var teamNum = teamTemp + info
+          var teamNum = teamTemp + info;
           // console.log(teamTemp);
           dataPathTeam.update({
             amountCorrect: teamNum
