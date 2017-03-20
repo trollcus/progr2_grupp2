@@ -34,6 +34,7 @@ function startQuiz(){
   divLeaderLogin.setAttribute('class', 'leaderboard-login');
   button.setAttribute('class', 'button-green');
   button.setAttribute('onClick', 'questionDisplay()');
+  button.setAttribute('id', 'leaderButton');
   span.setAttribute('id', 'point');
 
 

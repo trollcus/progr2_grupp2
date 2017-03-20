@@ -23,6 +23,7 @@ html, body {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
+  overflow-x: hidden;
   background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #BBE6F5 100%);
   background-image: linear-gradient(0deg, #FFFFFF 0%, #BBE6F5 100%);
   background-repeat: no-repeat; }
@@ -141,6 +142,9 @@ button {
   border-radius: 2px;
   background-color: #ec008c; }
 
+#leaderButton {
+  margin-top: 20%; }
+
 #placeQuestions {
   position: relative;
   width: 100vw;
@@ -210,10 +214,10 @@ button {
           -ms-flex-wrap: wrap;
               flex-wrap: wrap;
       padding: 2em 5em;
-      margin-top: 5em; }
+      margin-top: 1%; }
       #placeQuestions .question-wrap .question-option button {
         width: 15em;
         padding: 0;
-        height: 6em;
+        height: 5em;
         margin: 1em;
         font-size: 1.4em; }
