@@ -51,52 +51,6 @@ function startQuiz(){
 
 
   // leaderboard
-  // var db = firebase.database();
-  // var ref = db.ref('users/');
-  // ref.oncorderByChild().limitToFirst(2).on('value', function(snapshot) {
-  //   snapshot.forEach(function(data){
-  //     console.log(snapshot);
-  //   });
-  // });
-  // var ref = firebase.database().ref("users/");
-  // ref.once("value")
-  // .then(function(snapshot) {
-  //   snapshot.forEach(function(data){
-  //     console.log(snapshot);
-  //   });
-
-    // var name = snapshot.child("name").val(); // {first:"Ada",last:"Lovelace"}
-    // var firstName = snapshot.child("name/first").val(); // "Ada"
-    // var lastName = snapshot.child("name").child("last").val(); // "Lovelace"
-    // var age = snapshot.child("age").val(); // null
-    // console.log(name);
-  // });
-  // var childReverse = [];
-  // var query = firebase.database().ref("p2/users/").orderByChild('points');
-  // query.once("value")
-  // .then(function(snapshot) {
-  //   snapshot.forEach(function(childSnapshot) {
-      // key will be "ada" the first time and "alan" the second time
-      // var key = childSnapshot.key;
-      // console.log(key);
-      // childData will be the actual contents of the child
-      // var li = document.createElement('li');
-      // var line = document.createElement('hr');
-      // var childData = childSnapshot.val();
-
-      // var childReverse = [];
-      // childReverse.push(childData);
-      // var chRe = childReverse.reverse();
-      // console.log(key);
-      // for(i = 5; i > 1; i--){
-      //   li.innerHTML = childReverse[i][0].user + ' ' + childReverse[i][0].points;
-      //   ulList.appendChild(li);
-      //   ulList.appendChild(line);
-      // }
-
-
-
-  // });
 
 var array = [];
   var query = firebase.database().ref("p2/");
@@ -105,6 +59,7 @@ var array = [];
 
       array.push(child.val());
     });
+    // Call for function to create list when the request for object is done
     leader();
   });
 
@@ -120,38 +75,6 @@ var array = [];
       ulList.appendChild(line);
     }
   }
-
-
-
-  // query.once("value")
-  // .then(function(snapshot) {
-  //   snapshot.forEach(function(childSnapshot) {
-  //     // key will be "ada" the first time and "alan" the second time
-  //     var key = childSnapshot.key;
-  //     // console.log(key);
-  //     // childData will be the actual contents of the child
-  //     var li = document.createElement('li');
-  //     var line = document.createElement('hr');
-  //     var childData = childSnapshot.val();
-  //
-  //     // var childReverse = [];
-  //     childReverse.push(childData);
-  //     var chRe = childReverse.reverse();
-  //     console.log(key);
-  //     // for(i = 5; i > 1; i--){
-  //     //   li.innerHTML = childReverse[i][0].user + ' ' + childReverse[i][0].points;
-  //     //   ulList.appendChild(li);
-  //     //   ulList.appendChild(line);
-  //     // }
-
-
-  //
-  // });
-//   // console.log(childReverse.reverse());
-// });
-
-
-
 }
 
 
