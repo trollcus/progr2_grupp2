@@ -87,7 +87,7 @@ function inputTeam() {
     var greyTeam = document.getElementById('greyTeam');
     var yellowTeam = document.getElementById('yellowTeam');
     var pinkTeam = document.getElementById('pinkTeam');
-    var teamValue;
+    var teamValue = 'Grey';
     var points = 0;
     var category = 0;
 

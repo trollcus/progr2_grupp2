@@ -62,20 +62,28 @@ button {
   background: #00aeef; }
   .button-blue:focus {
     background: #006489; }
+  .button-blue:active {
+    background: #006489; }
 
 .button-green {
   background: #8cc63f; }
   .button-green:focus {
+    background: #567b24; }
+  .button-green:active {
     background: #567b24; }
 
 .button-pink {
   background: #ec008c; }
   .button-pink:focus {
     background: #86004f; }
+  .button-pink:active {
+    background: #86004f; }
 
 .button-yellow {
   background: #ffde17; }
   .button-yellow:focus {
+    background: #b09700; }
+  .button-yellow:active {
     background: #b09700; }
 
 .button-grey {
