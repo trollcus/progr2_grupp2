@@ -9,6 +9,10 @@ function onDocumentReady() {
   leaderBoardLast();
 }
 
+function quitImage(){
+  window.location.href = '../index.html';
+}
+
 function backToGame(){
   window.location.href = 'index.html';
 }
