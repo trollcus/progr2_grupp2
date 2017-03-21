@@ -15,7 +15,7 @@ function quitImage(){
 }
 
 function backToGame(){
-  window.location.href = 'index.html';
+  window.location.href = 'index.html#quiz';
 }
 
 function leaderBoardLast() {
@@ -55,11 +55,28 @@ function leader(){
 
 function teamLeader() {
   var dataPathTeam = firebase.database().ref("p2/points/teams/");
-  dataPathTeam.once('value').then(function(teamSnapshot){
-    for(i = 0; i < 5; i++){
-      console.log(teamSnapshot.child(i).child('teamName').val());
-      console.log(teamSnapshot.child(i).child('amountCorrect').val());
-    }
+  dataPathTeam.once('value').then(function(teamSnapshot) {
+      for (i = 0; i < 5; i++) {
+          var teams = teamSnapshot.child(i).child('teamName').val();
+          var teamPoints = teamSnapshot.child(i).child('amountCorrect').val();
+          switch (i) {
+              case 0:
+                  document.getElementById("green_score").value = teamPoints;
+                  break;
+              case 1:
+                  document.getElementById("blue_score").value = teamPoints;
+                  break;
+              case 2:
+                  document.getElementById("pink_score").value = teamPoints;
+                  break;
+              case 3:
+                  document.getElementById("yellow_score").value = teamPoints;
+                  break;
+              case 4:
+                  document.getElementById("gray_score").value = teamPoints;
+                  break;
+          }
+      }
 
-});
+  });
 }

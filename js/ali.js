@@ -11,8 +11,13 @@ if (document.readyState != 'loading') {
 }
 
 function onDocumentReady() {
-    //document.addEventListener('onclick', questionDisplay);
-    checkLoggedIn();
+    // Check to see if the user has clicked next category from the leaderboard page, this skips the first screen and jumps straight into questions
+    if (window.location.hash === '#quiz'){
+      redirectLoggedIn();
+    } else{
+      checkLoggedIn();
+    }
+
 }
 
 var category;
@@ -55,7 +60,7 @@ function startQuiz(){
 
   // leaderboard
 
-var array = [];
+  var array = [];
   var query = firebase.database().ref("p2/");
   query.child('users').orderByChild('points').on('value', function (snapshot) {
     snapshot.forEach(function(child){
@@ -102,20 +107,52 @@ function checkLoggedIn() {
     });
 }
 
+function redirectLoggedIn() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            var datapathUser = firebase.database().ref('p2/users/' + user.uid);
+            datapathUser.once('value').then(function(snapshot) {
+                // Updating which category the user has
+                category = snapshot.child('category').val();
+                // Start the quiz if logged in
+                questionDisplay();
+            });
+        } else {
+            // No user is signed in.
+            window.location.href = '../index.html';
+        }
+    });
+}
+
 // Display question with the for loop, The array has been pushed from snapshot and then printed out with each i (0, 1, 2) (The questions is ordered 0, 1, 2 in the database)
 
 var questionsArray = [];
 
 function questionDisplay() {
+
     var disable = document.getElementById('prePlaySection');
-    disable.style.display = 'none';
-    for (i = 0; i < 5; i++) {
-        questionMaker(i);
-        if(i === 4) {
-          // When i hits 4 it jumps into the function below and updates your values and your teams values then it takes you to the leaderboard page.
-          timeoutQuestion(i);
-        }
+    // If the page does not exist( Because of the redirect from leaderboard page) it starts loading the question immediately
+    if(disable === null){
+      for (i = 0; i < 5; i++) {
+          questionMaker(i);
+          if(i === 4) {
+            // When i hits 4 it jumps into the function below and updates your values and your teams values then it takes you to the leaderboard page.
+            timeoutQuestion(i);
+          }
+      }
+      // If you are just logged in the start screen is still going to show up
+    } else{
+      disable.style.display = 'none';
+      for (i = 0; i < 5; i++) {
+          questionMaker(i);
+          if(i === 4) {
+            // When i hits 4 it jumps into the function below and updates your values and your teams values then it takes you to the leaderboard page.
+            timeoutQuestion(i);
+          }
+      }
     }
+
+
 
 }
 
@@ -135,7 +172,7 @@ function timeoutQuestion(i){
         categoryNum = snapshot.child('category').val();
         pointsTemp = snapshot.child('points').val();
         team = snapshot.child('team').val();
-        // See the team value, Recognizes what team you are in and assign an value depending on which team. That value later gets pushed into next datapath
+        // See the team value, Recognizes what team you are in and assign an value depending on which team. That value later gets pushed into next firebase datapath
         var teamNum;
         switch(team){
           case 'Green':
