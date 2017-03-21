@@ -1,4 +1,6 @@
+// Viewport width
 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+// Global variable for the local points
 var localCorrecter = 0;
 
 
@@ -27,7 +29,7 @@ function startQuiz(){
 
   var span = document.createElement('span');
 
-  //---- Klasser
+  //---- Classes
 
   section.setAttribute('class', 'preplay-wrap');
   section.setAttribute('id', 'prePlaySection');
@@ -64,12 +66,13 @@ var array = [];
   });
 
   function leader(){
+    // Create a new array but backwards to get the best scores
     var arrReverse = array.reverse();
     // console.log(arrReverse);
     for(i = 0; i < arrReverse.length; i++){
+      // Create Element for each user
       var li = document.createElement('li');
       var line = document.createElement('hr');
-
 
       li.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
       ulList.appendChild(li);
@@ -87,7 +90,9 @@ function checkLoggedIn() {
         if (user) {
             var datapathUser = firebase.database().ref('p2/users/' + user.uid);
             datapathUser.once('value').then(function(snapshot) {
+                // Updating which category the user has
                 category = snapshot.child('category').val();
+                // Start the quiz if logged in
                 startQuiz();
             });
         } else {
@@ -97,7 +102,7 @@ function checkLoggedIn() {
     });
 }
 
-// Display question with the for loop, The array has been pushed from snapshot and then rpinted out
+// Display question with the for loop, The array has been pushed from snapshot and then printed out with each i (0, 1, 2) (The questions is ordered 0, 1, 2 in the database)
 
 var questionsArray = [];
 
@@ -107,6 +112,7 @@ function questionDisplay() {
     for (i = 0; i < 5; i++) {
         questionMaker(i);
         if(i === 4) {
+          // When i hits 4 it jumps into the function below and updates your values and your teams values then it takes you to the leaderboard page.
           timeoutQuestion(i);
         }
     }
@@ -154,7 +160,7 @@ function timeoutQuestion(i){
         var teamTemp = 0;
         var dataPathTeam = firebase.database().ref("p2/points/teams/" + teamNum);
 
-        // Updating the team value
+        // Updating the team value taking previous number and adding current local number
         dataPathTeam.once('value').then(function(teamSnapshot){
           teamTemp = teamSnapshot.child('amountCorrect').val();
           var teamNum = teamTemp + info;
@@ -177,7 +183,7 @@ function timeoutQuestion(i){
       });
     }
 
-
+      // The timer below takes i into account. i * 0 which means the first question fires immediately. The next question fires 8000ms later
   }, (8000 * i) + 8000);
   setTimeout(function() {
     // When the function to push new values the function redirects to leaderboard
@@ -190,6 +196,7 @@ function questionMaker(i) {
         var button;
         var localCounter;
         var user = firebase.auth().currentUser;
+        // Get the global variable for which category you are in to be able to display correct question
         var datapath = firebase.database().ref("p2/questions/" + category + "/");
 
         datapath.once('value').then(function(snapshot) {
@@ -315,19 +322,13 @@ function questionMaker(i) {
 
             section.appendChild(correctOrWrong);
 
-            var localCorrecter = 0;
-
-
-            if(correctAnswer.called){
-              clearTimeout();
-            }
 
 
             // Change the value of progress bar
             var progressBar = document.getElementById('progressBar');
             progressBar.value = i;
 
-            // Opacity animation
+            // Opacity animation on each question window
             section.style.opacity = 0;
             setInterval(function() {
                 if (section.style.opacity === 1) {
@@ -337,7 +338,7 @@ function questionMaker(i) {
                 }
             });
 
-            // Animation for the questions
+            // Animation for the questions to be able to go out of sight which does it quickly
             setTimeout(function() {
                 var pos = w - 1;
                 var position;
@@ -371,16 +372,14 @@ function correctAnswer(){
   // Get how many buttons there is to be able to display and set correct in the same function
 
   for(i = 0; i < buttonDisabler.length; i++){
-    // Print our a check if the answer is true
+    // Print out a correct sign if the answer is true
     var questionWind = document.getElementById('question-option-window'  + '-' + i);
     if (questionWind){
       questionWind.appendChild(check);
     }
 
-    // If button is ignored its going to skip that button.
+    // If button is disabled its going to skip that button.
     if (buttonDisabler.disabled){
-      // buttonDisabler[i].preventDefault();
-      console.log('ignored');
     }else {
       buttonDisabler[i].disabled = true;
     }
@@ -408,5 +407,5 @@ function wrongAnswer(){
     }
 
   }
-// See CorrectAnswer() for comments
+// See CorrectAnswer() for comments, the same function but if user selects the wrong quesion
 }

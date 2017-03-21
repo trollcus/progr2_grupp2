@@ -33,15 +33,13 @@
   <section class="login-choice" id="loginChoice">
     <h1 class="choose">CHOOSE YOUR TEAM</h1>
     <div id="teams">
-      <button class="button-blue team" id="blueTeam" onClick="blueClick()" value="Blue">kultur & <br> samhälle</button>
-      <button class="button-yellow team" id="yellowTeam" onClick="yellowClick()" value="Yellow">lärande & <br> samhälle</button>
-      <button class="button-pink team" id="pinkTeam" onClick="pinkClick()" value="Pink">hälsa & <br> samhälle</button>
-      <button class="button-green team" id="greenTeam" onClick="greenClick()" value="Green"> teknik & <br> samhälle</button>
-      <button class="button-grey active team" id="greyTeam" onClick="greyClick()" value="Grey">other</button>
+      <button class="button-blue team" id="blueTeam" onClick="teamClick(this)" value="Blue">kultur & <br> samhälle</button>
+      <button class="button-yellow team" id="yellowTeam" onClick="teamClick(this)" value="Yellow">lärande & <br> samhälle</button>
+      <button class="button-pink team" id="pinkTeam" onClick="teamClick(this)" value="Pink">hälsa & <br> samhälle</button>
+      <button class="button-green team" id="greenTeam" onClick="teamClick(this)" value="Green"> teknik & <br> samhälle</button>
+      <button class="button-grey active team" id="greyTeam" onClick="teamClick(this)" value="Grey">other</button>
     </div>
-    <!-- <h3>Choose your nickname </h3>
-    <h5>(Leave empty if you want your regular name)<h5>
-    <input type="text" placeholder="Inloggsnamn"> -->
+
     <button class="button-green" id="next" onClick="inputTeam()">NEXT</button>
   </section>
 

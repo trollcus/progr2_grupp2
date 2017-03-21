@@ -7,6 +7,7 @@ if (document.readyState != 'loading') {
 function onDocumentReady() {
   // Document ready
   leaderBoardLast();
+  teamLeader();
 }
 
 function quitImage(){
@@ -48,4 +49,17 @@ function leader(){
     ul.appendChild(line);
   }
 }
+}
+
+
+
+function teamLeader() {
+  var dataPathTeam = firebase.database().ref("p2/points/teams/");
+  dataPathTeam.once('value').then(function(teamSnapshot){
+    for(i = 0; i < 5; i++){
+      console.log(teamSnapshot.child(i).child('teamName').val());
+      console.log(teamSnapshot.child(i).child('amountCorrect').val());
+    }
+
+});
 }

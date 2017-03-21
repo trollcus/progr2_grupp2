@@ -1,4 +1,5 @@
 var provider = new firebase.auth.GoogleAuthProvider();
+var teamValue = 'Grey'; // Default team
 
 if (document.readyState != 'loading') {
     onDocumentReady();
@@ -15,15 +16,6 @@ function loginButton() {
         console.log("Logged in");
         userInfo();
         loginCheck();
-
-        // if(datapath.child('team').val() == 'Blue' && datapath == 'Pink' && datapath == 'Yellow' && datapath == 'Grey' && datapath == 'Green'){
-        //   console.log("yo");
-        // }
-        // console.log(datapath.child('team').val());
-        // var login = document.getElementById('loginButton');
-        // var loginChoice = document.getElementById('loginChoice');
-        // login.style.display = "none";
-        // loginChoice.style.display = "block";
 
     }).catch(function(error) {
         console.log("Unsuccessful login");
@@ -47,11 +39,7 @@ function loginCheck(){
       loginChoice.style.display = "block";
     }
   });
-  // if(user){
-  //   var teamVal = datapath.child('team').val();
-  //   console.log(teamVal);
 
-    // console.log(datapath.child('team').val());
   }
 
 
@@ -69,6 +57,7 @@ function userInfo() {
     }
 }
 
+// Function to create the user properties. Here we need what team the user, what category to track, the name and points for scoreboard
 function createUser(name, team, category, points) {
   this.team = team;
   this.user = name;
@@ -76,10 +65,15 @@ function createUser(name, team, category, points) {
   this.points = points;
 }
 
-
+// If user clicks on of the teams the variable gets reassigned to the value
+function teamClick(teamChoice){
+  teamValue = teamChoice.value;
+}
 
 function inputTeam() {
   var user = firebase.auth().currentUser;
+
+
   if (user){
     var datapath = firebase.database().ref('p2/users/' + user.uid);
     var blueTeam = document.getElementById('blueTeam');
@@ -87,31 +81,10 @@ function inputTeam() {
     var greyTeam = document.getElementById('greyTeam');
     var yellowTeam = document.getElementById('yellowTeam');
     var pinkTeam = document.getElementById('pinkTeam');
-    var teamValue = 'Grey';
+
     var points = 0;
     var category = 0;
 
-    if(greenClick.called){
-      console.log(teamValue);
-      teamValue = greenTeam.value;
-    }
-    if(blueClick.called){
-      console.log(teamValue);
-      teamValue = blueTeam.value;
-    }
-
-    if(greyClick.called){
-      console.log(teamValue);
-      teamValue = greyTeam.value;
-    }
-    if(yellowClick.called){
-      console.log(teamValue);
-      teamValue = yellowTeam.value;
-    }
-    if(pinkClick.called){
-      console.log(teamValue);
-      teamValue = pinkTeam.value;
-    }
     var info = new createUser(user.displayName, teamValue, points, category);
     datapath.set(info).then(function() {
       console.log("Save succeeded");
@@ -120,38 +93,4 @@ function inputTeam() {
       console.log("Error");
     });
   }
-}
-
-function blueClick(){
-  blueClick.called = true;
-  var blueTeam = document.getElementById('blueTeam');
-
-  return blueTeam.value;
-}
-function greenClick(){
-  greenClick.called = true;
-  var greenTeam = document.getElementById('greenTeam');
-  return greenTeam.value;
-}
-function greyClick(){
-  greyClick.called = true;
-  var greyTeam = document.getElementById('greyTeam');
-
-  return greyTeam.value;
-}
-function yellowClick(){
-  yellowClick.called = true;
-  var yellowTeam = document.getElementById('yellowTeam');
-
-  return yellowTeam.value;
-}
-function pinkClick(){
-  pinkClick.called = true;
-  var pinkTeam = document.getElementById('pinkTeam');
-
-  return pinkTeam.value;
-}
-
-function qeustionDisplay(){
-
 }
