@@ -74,7 +74,7 @@ function startQuiz(){
     // Create a new array but backwards to get the best scores
     var arrReverse = array.reverse();
     // console.log(arrReverse);
-    for(i = 0; i < arrReverse.length; i++){
+    for(i = 0; i < 5; i++){
       // Create Element for each user
       var li = document.createElement('li');
       var line = document.createElement('hr');
