@@ -158,7 +158,6 @@ border-color: white
       left: 4.5em; }
       #placeQuestions .preplay-wrap .leaderboard-login ul {
         list-style: none;
-        padding: 0 1em;
         text-align: left; }
         #placeQuestions .preplay-wrap .leaderboard-login ul hr:last-of-type {
           display: none; }
@@ -206,10 +205,13 @@ border-color: white
           width: 100%;
           height: 100%;
         }
+        .Score-page img{
+          display: none;
+        }
         .leaderboard{
           position: relative;
           top: 10%;
-          left: 10%;
+          left: 7%;
           width: 320px;
           height: 125px;
           border-radius: 2rem;
@@ -222,7 +224,7 @@ border-color: white
 
         .teamscore{
           position: relative;
-          left:10%;
+          left: 7%;
           top: -2rem;
           width: 320px;
           border-radius: 2rem;

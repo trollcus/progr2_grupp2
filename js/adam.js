@@ -30,23 +30,18 @@ function leaderBoardLast() {
     leader();
 });
 
-var placement = document.getElementById('leaderUl');
 
 
 function leader(){
+
   var arrReverse = array.reverse();
-  var ul = document.createElement('ul');
-  placement.appendChild(ul);
+  // var ul = document.createElement('ul');
+  // placement.appendChild(ul);
   // console.log(arrReverse);
   for(i = 0; i < 3; i++){
+    var liPlacement = document.getElementById('leader-' + i);
 
-    var li = document.createElement('li');
-    var line = document.createElement('hr');
-
-
-    li.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
-    ul.appendChild(li);
-    ul.appendChild(line);
+    liPlacement.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
   }
 }
 }

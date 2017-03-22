@@ -184,12 +184,13 @@ button {
       left: 1em; }
       #placeQuestions .preplay-wrap .leaderboard-login ul {
         list-style: none;
-        padding: 0 1em;
-        text-align: left; }
+        text-align: left;
+        padding: 0; }
         #placeQuestions .preplay-wrap .leaderboard-login ul hr:last-of-type {
           display: none; }
         #placeQuestions .preplay-wrap .leaderboard-login ul li {
-          margin: 1em; }
+          padding: 0 1.5em;
+          margin: 1em 0 1em 0; }
   #placeQuestions .question-wrap {
     opacity: 0;
     height: 100%;
@@ -227,20 +228,76 @@ button {
         margin: 1em;
         font-size: 1.4em; }
 
+.login-wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%; }
+  .login-wrap .rubrik {
+    margin-bottom: 5em;
+    width: 80%; }
+  .login-wrap button {
+    width: 60%; }
+
+.illustrations {
+  margin-top: 3em;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+  .illustrations svg {
+    width: 15%;
+    height: 15%;
+    margin-left: 5em; }
+    .illustrations svg:last-of-type {
+      margin: 0;
+      width: 40%;
+      margin-top: 10%; }
+
 #leaderUl {
   margin-bottom: 1em;
   height: auto; }
+  #leaderUl hr {
+    margin-bottom: 0 !important; }
   #leaderUl ul {
     padding: 0;
     margin: 0 0 0.5em 0;
     list-style: none; }
-    #leaderUl ul hr:last-of-type {
-      display: none; }
     #leaderUl ul li {
       font-size: 0.5em;
-      padding: 0 0.5em; }
+      padding: 1em 0.5em;
+      border-bottom: 2px solid white; }
+      #leaderUl ul li:last-of-type {
+        border: none; }
 
-@media(max-width: 740px) {
+@media (max-width: 740px) {
   .team {
     width: 10em;
     height: 10em;
@@ -255,4 +312,48 @@ button {
     margin-bottom: 0; }
 
   #next {
-    margin-bottom: 1em; } }
+    margin-bottom: 1em; }
+
+  .illustrations {
+    margin-top: 3em;
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
+    .illustrations svg {
+      width: 20%;
+      height: 20%;
+      margin-left: 0; }
+      .illustrations svg:last-of-type {
+        margin: 0;
+        width: 50%;
+        margin-top: 10%; }
+
+  .login-wrap .rubrik {
+    margin-bottom: 5em;
+    width: 100%; }
+  .login-wrap button {
+    width: 70%;
+    font-size: 0.8em; } }
+@media (min-width: 1080px) {
+  .login-wrap {
+    width: 60%; }
+    .login-wrap button {
+      width: 30em; } }

@@ -13,17 +13,24 @@
   <section  class = "Score-page">
     <img src="quit.png" height="75" width="150" alt="quit game" onClick="quitImage()"/>
     <div class = "leaderboard" id="leaderUl">TOP 3 SCORES<hr>
+      <ul>
+        <li id="leader-0"></li>
 
+        <li id="leader-1"></li>
+
+        <li id="leader-2"></li>
+
+      </ul>
     </div>
     <div><button class = "button-backToGame" onClick="backToGame()">Next Category &#10148;</button></div>
     <div class = "teamscore">TEAM SCORES
       <div class="teamscore_container">
 
-          <progress id="green_score" value="" max="100"></progress>
-          <progress id="blue_score" value="" max="100"></progress>
-          <progress id="pink_score" value="" max="100"></progress>
-          <progress id="yellow_score" value="" max="100"></progress>
-          <progress id="gray_score" value="" max="100"></progress>
+          <progress id="green_score" value="0" max="100"></progress>
+          <progress id="blue_score" value="0" max="100"></progress>
+          <progress id="pink_score" value="0" max="100"></progress>
+          <progress id="yellow_score" value="0" max="100"></progress>
+          <progress id="gray_score" value="0" max="100"></progress>
     </div>
     </div>
   </section>

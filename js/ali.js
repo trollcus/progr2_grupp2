@@ -78,11 +78,19 @@ function startQuiz(){
       // Create Element for each user
       var li = document.createElement('li');
       var line = document.createElement('hr');
+      li.setAttribute('id', 'leaderboardLeader' + i);
 
       li.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
       ulList.appendChild(li);
       ulList.appendChild(line);
     }
+    for(i = 0; i < 5; i++){
+      // Print out each persons highscore
+      var liElement = document.getElementById('leaderboardLeader' + i);
+      liElement.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
+
+    }
+
   }
 }
 
@@ -246,6 +254,7 @@ function questionMaker(i) {
             var questionOption = document.createElement('div');
             var correctOrWrong = document.createElement('div');
             var categoryH2 = document.createElement('h2');
+            var timer = document.createElement('h3');
             var questionH1 = document.createElement('h1');
             var buttonCorrect = document.createElement('button');
             var buttonWrong = document.createElement('button');
@@ -262,6 +271,7 @@ function questionMaker(i) {
             categoryH2.innerHTML = categoryTitle;
             section.appendChild(question);
             question.appendChild(categoryH2);
+            question.appendChild(timer);
             question.appendChild(questionH1);
             section.appendChild(questionOption);
             section.style.left = '0px';
@@ -284,6 +294,7 @@ function questionMaker(i) {
             // Random putting out color of question
 
             questionH1.innerHTML = eachQuestion;
+            timer.innerHTML = 7 + ' seconds left';
             buttonCorrect.innerHTML = correct;
             buttonCorrect.setAttribute('onClick', 'correctAnswer()');
             buttonCorrect.setAttribute('name', 'buttonOption');
@@ -358,6 +369,16 @@ function questionMaker(i) {
             }
 
             section.appendChild(correctOrWrong);
+            var counter = setInterval(timerQuestion, 1000);
+            var timerTime = 7;
+            function timerQuestion(){
+              timerTime = timerTime - 1;
+              if(timerTime <= 0){
+                clearInterval(timerQuestion);
+                return;
+              }
+              timer.innerHTML = timerTime + ' seconds left';
+            }
 
 
 
