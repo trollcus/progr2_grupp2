@@ -85,7 +85,7 @@ function startQuiz(){
       ulList.appendChild(line);
     }
     for(i = 0; i < 5; i++){
-      // Print out each persons highscore
+      // Print out each persons highscore replacing each time someone gets more points
       var liElement = document.getElementById('leaderboardLeader' + i);
       liElement.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
 

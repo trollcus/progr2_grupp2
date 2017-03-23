@@ -23,6 +23,7 @@ function loginButton() {
     });
 }
 
+// Check to see if a user is already existing, if that is the case it skips the "Choose team" page
 function loginCheck(){
   var teamVal;
   var login = document.getElementById('loginButton');
