@@ -33,21 +33,16 @@ function leaderBoardLast() {
 
 
 function leader(){
-
   var arrReverse = array.reverse();
-  // var ul = document.createElement('ul');
-  // placement.appendChild(ul);
-  // console.log(arrReverse);
   for(i = 0; i < 3; i++){
     var liPlacement = document.getElementById('leader-' + i);
-
     liPlacement.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
   }
 }
 }
 
 
-
+// Get and dsplay each teams score
 function teamLeader() {
   var dataPathTeam = firebase.database().ref("p2/points/teams/");
   dataPathTeam.once('value').then(function(teamSnapshot) {

@@ -12,86 +12,86 @@ if (document.readyState != 'loading') {
 
 function onDocumentReady() {
     // Check to see if the user has clicked next category from the leaderboard page, this skips the first screen and jumps straight into questions
-    if (window.location.hash === '#quiz'){
-      redirectLoggedIn();
-    } else{
-      checkLoggedIn();
+    if (window.location.hash === '#quiz') {
+        redirectLoggedIn();
+    } else {
+        checkLoggedIn();
     }
 
 }
 
 var category;
 
-function startQuiz(){
-  var parent = document.getElementById('placeQuestions');
-  // Elements we need
-  var section = document.createElement('section');
-  var divLeaderLogin = document.createElement('div');
-  var button = document.createElement('button');
-  var h2 = document.createElement('h2');
-  var ulList = document.createElement('ul');
+function startQuiz() {
+    var parent = document.getElementById('placeQuestions');
+    // Elements we need
+    var section = document.createElement('section');
+    var divLeaderLogin = document.createElement('div');
+    var button = document.createElement('button');
+    var h2 = document.createElement('h2');
+    var ulList = document.createElement('ul');
 
 
-  var span = document.createElement('span');
+    var span = document.createElement('span');
 
-  //---- Classes
+    //---- Classes
 
-  section.setAttribute('class', 'preplay-wrap');
-  section.setAttribute('id', 'prePlaySection');
-  divLeaderLogin.setAttribute('class', 'leaderboard-login');
-  button.setAttribute('class', 'button-green');
-  button.setAttribute('onClick', 'questionDisplay()');
-  button.setAttribute('id', 'leaderButton');
-  span.setAttribute('id', 'point');
-
-
-  h2.innerHTML = 'Leaderboard';
-  button.innerHTML = 'Lets play!';
-
-  // ----
-  parent.appendChild(section);
-  section.appendChild(button);
-  section.appendChild(divLeaderLogin);
-
-  divLeaderLogin.appendChild(h2);
-  divLeaderLogin.appendChild(ulList);
+    section.setAttribute('class', 'preplay-wrap');
+    section.setAttribute('id', 'prePlaySection');
+    divLeaderLogin.setAttribute('class', 'leaderboard-login');
+    button.setAttribute('class', 'button-green');
+    button.setAttribute('onClick', 'questionDisplay()');
+    button.setAttribute('id', 'leaderButton');
+    span.setAttribute('id', 'point');
 
 
+    h2.innerHTML = 'Leaderboard';
+    button.innerHTML = 'Lets play!';
 
-  // leaderboard
+    // ----
+    parent.appendChild(section);
+    section.appendChild(button);
+    section.appendChild(divLeaderLogin);
 
-  var array = [];
-  var query = firebase.database().ref("p2/");
-  query.child('users').orderByChild('points').on('value', function (snapshot) {
-    snapshot.forEach(function(child){
-      array.push(child.val());
+    divLeaderLogin.appendChild(h2);
+    divLeaderLogin.appendChild(ulList);
+
+
+
+    // leaderboard
+
+    var array = [];
+    var query = firebase.database().ref("p2/");
+    query.child('users').orderByChild('points').on('value', function(snapshot) {
+        snapshot.forEach(function(child) {
+            array.push(child.val());
+        });
+        // Call for function to create list when the request for object is done
+        leader();
     });
-    // Call for function to create list when the request for object is done
-    leader();
-  });
 
-  function leader(){
-    // Create a new array but backwards to get the best scores
-    var arrReverse = array.reverse();
-    // console.log(arrReverse);
-    for(i = 0; i < 5; i++){
-      // Create Element for each user
-      var li = document.createElement('li');
-      var line = document.createElement('hr');
-      li.setAttribute('id', 'leaderboardLeader' + i);
+    function leader() {
+        // Create a new array but backwards to get the best scores
+        var arrReverse = array.reverse();
+        // console.log(arrReverse);
+        for (i = 0; i < 5; i++) {
+            // Create Element for each user
+            var li = document.createElement('li');
+            var line = document.createElement('hr');
+            li.setAttribute('id', 'leaderboardLeader' + i);
 
-      li.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
-      ulList.appendChild(li);
-      ulList.appendChild(line);
+            li.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
+            ulList.appendChild(li);
+            ulList.appendChild(line);
+        }
+        for (i = 0; i < 5; i++) {
+            // Print out each persons highscore replacing each time someone gets more points
+            var liElement = document.getElementById('leaderboardLeader' + i);
+            liElement.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
+
+        }
+
     }
-    for(i = 0; i < 5; i++){
-      // Print out each persons highscore replacing each time someone gets more points
-      var liElement = document.getElementById('leaderboardLeader' + i);
-      liElement.innerHTML = arrReverse[i].user + ' ' + arrReverse[i].points;
-
-    }
-
-  }
 }
 
 
@@ -140,24 +140,24 @@ function questionDisplay() {
 
     var disable = document.getElementById('prePlaySection');
     // If the page does not exist( Because of the redirect from leaderboard page) it starts loading the question immediately
-    if(disable === null){
-      for (i = 0; i < 5; i++) {
-          questionMaker(i);
-          if(i === 4) {
-            // When i hits 4 it jumps into the function below and updates your values and your teams values then it takes you to the leaderboard page.
-            timeoutQuestion(i);
-          }
-      }
-      // If you are just logged in the start screen is still going to show up
-    } else{
-      disable.style.display = 'none';
-      for (i = 0; i < 5; i++) {
-          questionMaker(i);
-          if(i === 4) {
-            // When i hits 4 it jumps into the function below and updates your values and your teams values then it takes you to the leaderboard page.
-            timeoutQuestion(i);
-          }
-      }
+    if (disable === null) {
+        for (i = 0; i < 5; i++) {
+            questionMaker(i);
+            if (i === 4) {
+                // When i hits 4 it jumps into the function below and updates your values and your teams values then it takes you to the leaderboard page.
+                timeoutQuestion(i);
+            }
+        }
+        // If you are just logged in the start screen is still going to show up
+    } else {
+        disable.style.display = 'none';
+        for (i = 0; i < 5; i++) {
+            questionMaker(i);
+            if (i === 4) {
+                // When i hits 4 it jumps into the function below and updates your values and your teams values then it takes you to the leaderboard page.
+                timeoutQuestion(i);
+            }
+        }
     }
 
 
@@ -165,75 +165,75 @@ function questionDisplay() {
 }
 
 
-function timeoutQuestion(i){
-  setTimeout(function() {
-    // Push score to database
-    var user = firebase.auth().currentUser;
-    var info = localCorrecter;
-    var categoryNum;
-    if(user){
-      var datapath = firebase.database().ref("p2/users/" + user.uid);
+function timeoutQuestion(i) {
+    setTimeout(function() {
+        // Push score to database
+        var user = firebase.auth().currentUser;
+        var info = localCorrecter;
+        var categoryNum;
+        if (user) {
+            var datapath = firebase.database().ref("p2/users/" + user.uid);
 
-      // Take the datapath value
+            // Take the datapath value
 
-      datapath.once('value').then(function(snapshot){
-        categoryNum = snapshot.child('category').val();
-        pointsTemp = snapshot.child('points').val();
-        team = snapshot.child('team').val();
-        // See the team value, Recognizes what team you are in and assign an value depending on which team. That value later gets pushed into next firebase datapath
-        var teamNum;
-        switch(team){
-          case 'Green':
-            teamNum = 0;
-            break;
-          case 'Blue':
-            teamNum = 1;
-            break;
-          case 'Pink':
-            teamNum = 2;
-            break;
-          case 'Yellow':
-            teamNum = 3;
-            break;
-          case 'Grey':
-            teamNum = 4;
-            break;
+            datapath.once('value').then(function(snapshot) {
+                categoryNum = snapshot.child('category').val();
+                pointsTemp = snapshot.child('points').val();
+                team = snapshot.child('team').val();
+                // See the team value, Recognizes what team you are in and assign an value depending on which team. That value later gets pushed into next firebase datapath
+                var teamNum;
+                switch (team) {
+                    case 'Green':
+                        teamNum = 0;
+                        break;
+                    case 'Blue':
+                        teamNum = 1;
+                        break;
+                    case 'Pink':
+                        teamNum = 2;
+                        break;
+                    case 'Yellow':
+                        teamNum = 3;
+                        break;
+                    case 'Grey':
+                        teamNum = 4;
+                        break;
+                }
+                console.log(team);
+                categoryNum++;
+                var pointsNum = pointsTemp + info;
+                var teamTemp = 0;
+                var dataPathTeam = firebase.database().ref("p2/points/teams/" + teamNum);
+
+                // Updating the team value taking previous number and adding current local number
+                dataPathTeam.once('value').then(function(teamSnapshot) {
+                    teamTemp = teamSnapshot.child('amountCorrect').val();
+                    var teamNum = teamTemp + info;
+
+                    // Updating the value with the local variable plus old score
+                    dataPathTeam.update({
+                        amountCorrect: teamNum
+                    }).then(function() {
+                        console.log('Saved' + localCorrecter + 'to the' + team + ' team');
+                    });
+                });
+
+
+                datapath.update({
+                    points: pointsNum,
+                    category: categoryNum
+                }).then(function() {
+                    console.log('saved points');
+                });
+            });
         }
-        console.log(team);
-        categoryNum++;
-        var pointsNum = pointsTemp + info;
-        var teamTemp = 0;
-        var dataPathTeam = firebase.database().ref("p2/points/teams/" + teamNum);
 
-        // Updating the team value taking previous number and adding current local number
-        dataPathTeam.once('value').then(function(teamSnapshot){
-          teamTemp = teamSnapshot.child('amountCorrect').val();
-          var teamNum = teamTemp + info;
-
-          // Updating the value with the local variable plus old score
-          dataPathTeam.update({
-            amountCorrect: teamNum
-          }).then(function(){
-            console.log('Saved' + localCorrecter +  'to the'  + team + ' team');
-          });
-        });
-
-
-        datapath.update({
-          points: pointsNum,
-          category: categoryNum
-        }).then(function(){
-          console.log('saved points');
-        });
-      });
-    }
-
-      // The timer below takes i into account. i * 0 which means the first question fires immediately. The next question fires 8000ms later
-  }, (8000 * i) + 8000);
-  setTimeout(function() {
-    // When the function to push new values the function redirects to leaderboard
-    window.location.href = 'leaderboard.html';
-  }, (8000 * i) + 8500);
+        // The timer below takes i into account. i * 0 which means the first question fires immediately. The next question fires 8000ms later
+    }, (8000 * i) + 8000);
+    setTimeout(function() {
+        // When the function to push new values the function redirects to leaderboard
+        window.location.href = 'leaderboard.html';
+    }, (8000 * i) + 8500);
 }
 
 function questionMaker(i) {
@@ -265,7 +265,7 @@ function questionMaker(i) {
             section.setAttribute('class', 'question-wrap');
             question.setAttribute('class', 'question-window');
             questionOption.setAttribute('class', 'question-option');
-            correctOrWrong.setAttribute('id', 'question-option-window'  + '-' + i);
+            correctOrWrong.setAttribute('id', 'question-option-window' + '-' + i);
 
             document.getElementById('placeQuestions').appendChild(section);
             categoryH2.innerHTML = categoryTitle;
@@ -311,73 +311,74 @@ function questionMaker(i) {
             // Random position on text and buttons
 
             var randomNumber = Math.floor(Math.random() * 4);
-            switch(randomNumber){
-              case 0:
-                buttonCorrect.setAttribute('class', 'button-green');
-                buttonWrong.setAttribute('class', 'button-blue');
-                buttonWrong1.setAttribute('class', 'button-pink');
-                buttonWrong2.setAttribute('class', 'button-yellow');
-                break;
-              case 1:
-                buttonCorrect.setAttribute('class', 'button-yellow');
-                buttonWrong.setAttribute('class', 'button-green');
-                buttonWrong1.setAttribute('class', 'button-blue');
-                buttonWrong2.setAttribute('class', 'button-pink');
-                break;
-              case 2:
-                buttonCorrect.setAttribute('class', 'button-pink');
-                buttonWrong.setAttribute('class', 'button-yellow');
-                buttonWrong1.setAttribute('class', 'button-green');
-                buttonWrong2.setAttribute('class', 'button-blue');
+            switch (randomNumber) {
+                case 0:
+                    buttonCorrect.setAttribute('class', 'button-green');
+                    buttonWrong.setAttribute('class', 'button-blue');
+                    buttonWrong1.setAttribute('class', 'button-pink');
+                    buttonWrong2.setAttribute('class', 'button-yellow');
+                    break;
+                case 1:
+                    buttonCorrect.setAttribute('class', 'button-yellow');
+                    buttonWrong.setAttribute('class', 'button-green');
+                    buttonWrong1.setAttribute('class', 'button-blue');
+                    buttonWrong2.setAttribute('class', 'button-pink');
+                    break;
+                case 2:
+                    buttonCorrect.setAttribute('class', 'button-pink');
+                    buttonWrong.setAttribute('class', 'button-yellow');
+                    buttonWrong1.setAttribute('class', 'button-green');
+                    buttonWrong2.setAttribute('class', 'button-blue');
 
-                break;
-              case 3:
-                buttonCorrect.setAttribute('class', 'button-blue');
-                buttonWrong.setAttribute('class', 'button-pink');
-                buttonWrong1.setAttribute('class', 'button-yellow');
-                buttonWrong2.setAttribute('class', 'button-green');
-                break;
+                    break;
+                case 3:
+                    buttonCorrect.setAttribute('class', 'button-blue');
+                    buttonWrong.setAttribute('class', 'button-pink');
+                    buttonWrong1.setAttribute('class', 'button-yellow');
+                    buttonWrong2.setAttribute('class', 'button-green');
+                    break;
             }
 
             var appendNumber = Math.floor(Math.random() * 4);
 
-            switch(appendNumber){
-              case 0:
-                questionOption.appendChild(buttonCorrect);
-                questionOption.appendChild(buttonWrong);
-                questionOption.appendChild(buttonWrong1);
-                questionOption.appendChild(buttonWrong2);
-                break;
-              case 1:
-                questionOption.appendChild(buttonWrong);
-                questionOption.appendChild(buttonWrong1);
-                questionOption.appendChild(buttonWrong2);
-                questionOption.appendChild(buttonCorrect);
-                break;
-              case 2:
-                questionOption.appendChild(buttonWrong1);
-                questionOption.appendChild(buttonWrong2);
-                questionOption.appendChild(buttonCorrect);
-                questionOption.appendChild(buttonWrong);
-                break;
-              case 3:
-                questionOption.appendChild(buttonWrong2);
-                questionOption.appendChild(buttonCorrect);
-                questionOption.appendChild(buttonWrong);
-                questionOption.appendChild(buttonWrong1);
-                break;
+            switch (appendNumber) {
+                case 0:
+                    questionOption.appendChild(buttonCorrect);
+                    questionOption.appendChild(buttonWrong);
+                    questionOption.appendChild(buttonWrong1);
+                    questionOption.appendChild(buttonWrong2);
+                    break;
+                case 1:
+                    questionOption.appendChild(buttonWrong);
+                    questionOption.appendChild(buttonWrong1);
+                    questionOption.appendChild(buttonWrong2);
+                    questionOption.appendChild(buttonCorrect);
+                    break;
+                case 2:
+                    questionOption.appendChild(buttonWrong1);
+                    questionOption.appendChild(buttonWrong2);
+                    questionOption.appendChild(buttonCorrect);
+                    questionOption.appendChild(buttonWrong);
+                    break;
+                case 3:
+                    questionOption.appendChild(buttonWrong2);
+                    questionOption.appendChild(buttonCorrect);
+                    questionOption.appendChild(buttonWrong);
+                    questionOption.appendChild(buttonWrong1);
+                    break;
             }
 
             section.appendChild(correctOrWrong);
             var counter = setInterval(timerQuestion, 1000);
             var timerTime = 7;
-            function timerQuestion(){
-              timerTime = timerTime - 1;
-              if(timerTime <= 0){
-                clearInterval(timerQuestion);
-                return;
-              }
-              timer.innerHTML = timerTime + ' seconds left';
+
+            function timerQuestion() {
+                timerTime = timerTime - 1;
+                if (timerTime <= 0) {
+                    clearInterval(timerQuestion);
+                    return;
+                }
+                timer.innerHTML = timerTime + ' seconds left';
             }
 
 
@@ -418,52 +419,51 @@ function questionMaker(i) {
 
 
 
-function correctAnswer(){
-  // Adding points to the localPoints, which later dumps it value into the global variable
-  localCorrecter++;
+function correctAnswer() {
+    // Adding points to the localPoints, which later dumps it value into the global variable
+    localCorrecter++;
 
-  var buttonDisabler = document.getElementsByName("buttonOption");
-  var questionDark = document.getElementsByClassName('question-option');
-  var check = document.createElement('img');
-  check.setAttribute('src', 'thumbs-up.png');
+    var buttonDisabler = document.getElementsByName("buttonOption");
+    var questionDark = document.getElementsByClassName('question-option');
+    var check = document.createElement('img');
+    check.setAttribute('src', 'thumbs-up.png');
 
-  // Get how many buttons there is to be able to display and set correct in the same function
+    // Get how many buttons there is to be able to display and set correct in the same function
 
-  for(i = 0; i < buttonDisabler.length; i++){
-    // Print out a correct sign if the answer is true
-    var questionWind = document.getElementById('question-option-window'  + '-' + i);
-    if (questionWind){
-      questionWind.appendChild(check);
+    for (i = 0; i < buttonDisabler.length; i++) {
+        // Print out a correct sign if the answer is true
+        var questionWind = document.getElementById('question-option-window' + '-' + i);
+        if (questionWind) {
+            questionWind.appendChild(check);
+        }
+
+        // If button is disabled its going to skip that button.
+        if (buttonDisabler.disabled) {} else {
+            buttonDisabler[i].disabled = true;
+        }
     }
-
-    // If button is disabled its going to skip that button.
-    if (buttonDisabler.disabled){
-    }else {
-      buttonDisabler[i].disabled = true;
-    }
-  }
 }
 
 
 
-function wrongAnswer(){
-  var buttonDisabler = document.getElementsByName("buttonOption");
-  var questionDark = document.getElementsByClassName('question-option');
-  var check = document.createElement('img');
-  check.setAttribute('src', 'thumbs-down.png');
+function wrongAnswer() {
+    var buttonDisabler = document.getElementsByName("buttonOption");
+    var questionDark = document.getElementsByClassName('question-option');
+    var check = document.createElement('img');
+    check.setAttribute('src', 'thumbs-down.png');
 
-  for(i = 0; i < buttonDisabler.length; i++){
-    var questionWind = document.getElementById('question-option-window'  + '-' + i);
-    if (questionWind){
-      questionWind.appendChild(check);
+    for (i = 0; i < buttonDisabler.length; i++) {
+        var questionWind = document.getElementById('question-option-window' + '-' + i);
+        if (questionWind) {
+            questionWind.appendChild(check);
+        }
+
+        if (buttonDisabler.disabled) {
+            console.log('ignored');
+        } else {
+            buttonDisabler[i].disabled = true;
+        }
+
     }
-
-    if (buttonDisabler.disabled){
-        console.log('ignored');
-    } else {
-        buttonDisabler[i].disabled = true;
-    }
-
-  }
-// See CorrectAnswer() for comments, the same function but if user selects the wrong quesion
+    // See CorrectAnswer() for comments, the same function but if user selects the wrong quesion
 }
